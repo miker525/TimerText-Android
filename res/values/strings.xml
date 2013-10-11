@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">TextTimer</string>
+    <string name="action_settings">Queue</string>
+    <string name="hello_world">Text Timer</string>
+    <string name="when_to">Set When To Send:</string>
+    <string name="Who">To Who?</string>
+    <string name="Set">Send!</string>
+    <string name="autocompletetextview">AutoCompleteTextView</string>
+
+</resources>
