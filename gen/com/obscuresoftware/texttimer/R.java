@@ -47,6 +47,8 @@ public final class R {
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
         public static final int autocompletetextview=0x7f050006;
+        public static final int entermsg=0x7f050008;
+        public static final int enternum=0x7f050007;
         public static final int hello_world=0x7f050002;
         public static final int when_to=0x7f050003;
     }

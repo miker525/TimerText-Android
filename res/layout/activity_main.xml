@@ -70,6 +70,7 @@
         android:layout_alignTop="@+id/button1"
         android:layout_toLeftOf="@+id/button1"
         android:ems="10"
+        android:hint="@string/enternum"
         android:inputType="phone" >
 
         <requestFocus />
@@ -82,6 +83,7 @@
         android:layout_alignLeft="@+id/editText1"
         android:layout_alignTop="@+id/button2"
         android:layout_toLeftOf="@+id/button1"
+        android:hint="@string/entermsg"
         android:ems="10" android:inputType="text"/>
 
 </RelativeLayout>

@@ -8,5 +8,7 @@
     <string name="Who">To Who?</string>
     <string name="Set">Send!</string>
     <string name="autocompletetextview">AutoCompleteTextView</string>
+    <string name="enternum">Enter Phone Number</string>
+    <string name="entermsg">Enter Your Message</string>
 
 </resources>

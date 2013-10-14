@@ -28,12 +28,11 @@ import android.widget.TimePicker;
 
 public class MainActivity extends Activity 
 {
-
 	private EditText mEdit, cEdit;
 	private PendingIntent pendingIntent;
 	public static ArrayList<PendingIntent> intentArray = new ArrayList<PendingIntent>();
 	private static String[] senderInfo = new String[10000];
-	private static String[] msg;
+	private static String[] msg = new String[10000];
 	private static final int CONTACT_PICKER_RESULT = 1001; 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
@@ -67,12 +66,12 @@ public class MainActivity extends Activity
 	    calendar.set(Calendar.MINUTE, timePicker.getCurrentMinute());
 	    calendar.set(Calendar.SECOND, 0);
 	    senderInfo[textsToSend] = cEdit.getText().toString();
+	    msg[textsToSend] = mEdit.getText().toString();
 	    Intent myIntent = new Intent(MainActivity.this, MyReceiver.class);
 	    pendingIntent = PendingIntent.getBroadcast(MainActivity.this, textsToSend, myIntent,0);
 	    AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
 	    alarmManager.set(AlarmManager.RTC, calendar.getTimeInMillis(), pendingIntent);
 	    intentArray.add(pendingIntent);
-	    
 	    Context context = getApplicationContext();
 	    CharSequence text = "Timer Set!";
 	    int duration = Toast.LENGTH_SHORT;
@@ -90,6 +89,11 @@ public class MainActivity extends Activity
 	public static String getContact(int i)
 	{
 		return senderInfo[i];
+	}
+	
+	public static String getMessage(int i)
+	{
+		return msg[i];
 	}
 	
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) 
@@ -133,8 +137,7 @@ public class MainActivity extends Activity
 	                phoneEntry.setText(phonenum); 
 	                if (phonenum.length() == 0) 
 	                {  
-	                    Toast.makeText(this, "No Phone Number Found For Contact.",  
-	                            Toast.LENGTH_LONG).show();  
+	                    Toast.makeText(this, "No Phone Number Found For Contact.", Toast.LENGTH_LONG).show();  
 	                }  
 	            }  
 	            break;  
