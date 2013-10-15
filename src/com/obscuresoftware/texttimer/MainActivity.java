@@ -1,14 +1,13 @@
 package com.obscuresoftware.texttimer;
-
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -16,15 +15,10 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 import android.provider.ContactsContract.Contacts;  
 import android.provider.ContactsContract.CommonDataKinds.Phone;
-
 import java.util.ArrayList;
 import java.util.Calendar;
-
-import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
-import android.content.Intent;
-import android.widget.TimePicker;
 
 public class MainActivity extends Activity 
 {
@@ -46,7 +40,6 @@ public class MainActivity extends Activity
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) 
 	{
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
@@ -77,14 +70,31 @@ public class MainActivity extends Activity
 	    int duration = Toast.LENGTH_SHORT;
 	    Toast toast = Toast.makeText(context, text, duration);
 	    toast.show();
+	    QueueList.addToList(cEdit.getText().toString() + " - " + mEdit.getText().toString());
 	}
 	
 	public void whoBtnClick(View v)
 	{
-		//Log.d("woah", "WOAH");
 		Intent contactPickerIntent = new Intent(Intent.ACTION_PICK, Contacts.CONTENT_URI);  
 	    startActivityForResult(contactPickerIntent, CONTACT_PICKER_RESULT);  
 	}
+	
+	public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        case R.id.queuelist:
+        	startActivity(new Intent(MainActivity.this, QueueList.class));
+        	//Toast.makeText(getApplicationContext(), "Queue Clicked", Toast.LENGTH_SHORT).show();
+        	return true;
+        case R.id.abt:
+        	startActivity(new Intent(this, About.class));
+        	//Toast.makeText(getApplicationContext(), "About Clicked", Toast.LENGTH_SHORT).show();
+        	return true;
+        case R.id.exit:
+        	android.os.Process.killProcess(android.os.Process.myPid());
+        default:
+        return super.onOptionsItemSelected(item);
+        }
+    }
 	
 	public static String getContact(int i)
 	{
@@ -147,9 +157,5 @@ public class MainActivity extends Activity
 	    {  
 	        Log.w("debug", "Warning: activity result not ok");  
 	    }  
-	}   
-
-	
-	
-	
+	}   	
 }
